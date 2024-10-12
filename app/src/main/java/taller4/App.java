@@ -13,6 +13,21 @@ public class App {
         //Coloque los llamados a cada función de acuerdo con cada enunciado
         //codifique el control de errores para el main
 
+         try {
+            
+            System.out.println(impares(0));
+            System.out.println(Fibonacci(20));
+            System.out.println(raiz());
+            System.out.println(novecientos(200, 300));
+            System.out.println(suma_aleatorios(200));
+            System.out.println(loteria());
+            
+        } catch (Exception e) {
+           
+            System.out.println("error");
+            
+        }
+
 
     }
 
@@ -26,6 +41,50 @@ public class App {
      * 
     */
 
+    public static String impares(int num_imp_reci) {
+
+        try {
+
+            String impaString = "";
+            
+            
+            if (num_imp_reci >= 100 && num_imp_reci <= 500) {
+
+                int max_imp = num_imp_reci;
+                int contador = 1;
+
+                for (short i = 1; i <= max_imp; i++) {
+
+    
+                    if (i % 16 == 0) {
+
+                        impaString += "\n";
+
+                    } else if (i % 2 != 0) {
+    
+                        impaString += i + ", ";
+                        
+    
+                    }       
+    
+                }
+    
+                
+    
+            }
+
+            return impaString;
+
+            
+
+        } catch (Exception e) {
+            
+            return "error";
+
+        }
+
+    }
+
     /* 2. 	Escriba una función que reciba un entero N mayor de 2  y retorne un string cono esos N términos de la 
     serie de Fibonacci (La sucesión de Fibonacci se trata de una serie infinita de números naturales que empieza con un 0 y un 1 
     y continúa añadiendo números que son la suma de los dos anteriores: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 
@@ -33,6 +92,57 @@ public class App {
      * 
      * 
     */
+
+     public static String Fibonacci(int N) {
+
+        try {
+
+            int a = 0, b = 1, c = 0;
+            String fibo = "";
+
+            for(int i = 2; i <= N; i++) {
+
+                c = a + b;
+
+                if (i == 2) {
+
+                    fibo += a + ", " + b + ", ";
+
+                    
+
+                } 
+
+                    
+                if(N == i) {
+
+                    fibo += c + ".";
+
+                } else {
+
+                    fibo += c + ", ";
+
+                }
+                
+
+                
+
+                a = b;
+                b = c;
+                
+
+            }
+
+            return fibo;
+            
+
+        } catch (Exception e) {
+           
+            return "error en la funcion";
+
+        }
+
+
+    }
 
     /* 
      * 3.	Diseñar y desarrollar una función que NO reciba datos de entrada, genere aleatoriamente un número entre 2 y 355, 
@@ -42,6 +152,25 @@ public class App {
        de veces que va a llamar a la función y en un ciclo, mostrar los resultados.
 
     */
+
+    public static double raiz() {
+
+        try {
+
+            double num = 0, r = 0;
+            num = (Math.random() * (355 - 2 + 1) + 2);
+            r = Math.sqrt(num);
+
+            return r;
+            
+            
+
+        } catch (Exception e) {
+            
+            return -1;
+
+        }
+    }
 
 
 
@@ -53,6 +182,54 @@ public class App {
         Llame la función desde el main e imprimir el resultado arrojado.
     */
 
+    public static String novecientos(int min, int max){
+
+        try {
+
+            
+            int cont_pares = 0;
+            String numpares = "";
+
+            if (min > max) {
+
+                return "error";
+
+            } else {
+
+                for (byte i = 1; i <= 90; i++) {
+
+                    int random = (int)(Math.random() * (max - min + 1) + min);
+    
+                    if (random % 2 == 0) { 
+    
+                        cont_pares ++;
+                        numpares = "Su numero de pares es " + cont_pares;
+    
+                    }
+      
+    
+                }
+
+            }
+
+            
+
+            
+
+            return numpares;
+
+
+            
+
+
+        } catch (Exception e) {
+            
+            return "error";
+
+        }
+
+    }
+
 
 
 
@@ -63,6 +240,22 @@ public class App {
 
       
     */
+
+    
+    public static int suma_aleatorios(int cantidad) {
+        int random = 0;
+        int suma = 0;
+        int rMin = 1;
+        int rMax = 100;
+
+        for (int i = 0; i < cantidad; i++) {
+            
+            random = (int)(Math.random() * ((rMax - rMin) + 1) + rMin);
+            suma += random;
+        }
+
+        return suma;
+    }
 
 
     /* 6.	Se requiere una función para simular el sorteo de una lotería, de acuerdo con las siguientes condiciones:
@@ -104,5 +297,66 @@ public class App {
      * 
      * 
     */
+
+    public static String loteria() {
+        String resultado = "";
+        final byte nro_sorteos = 20, pm = 15, ps = 19, pmayor = 20;
+
+        int Serie = 0, nro_premiado = 0;
+
+        for (byte nro_st = 1; nro_st <= nro_sorteos; nro_st++) {
+
+            nro_premiado = (int)(Math.random()*(9999 - 0000) + 1);
+            Serie = (int)(Math.random()*(150 - 100) + 100 + 1);
+
+            
+            if (nro_st <= pm) {
+
+                if (nro_st == 1) {
+
+                    resultado += " ======PREMIOS MENORES======= \n";
+                    resultado += "Sorteo #" + nro_st + " - Número Premiado " + nro_premiado + " - Serie " + Serie + " \n";
+
+                } else {
+
+                    resultado += "Sorteo #" + nro_st + " - Número Premiado " + nro_premiado + " - Serie " + Serie + " \n";
+
+
+                }
+
+            } else if (nro_st > pm && nro_st <= ps) {
+
+                if (nro_st == 16) {
+
+                    resultado += " ======PREMIOS SECOS======= \n";
+                    resultado += "Sorteo #" + nro_st + " - Número Premiado " + nro_premiado + " - Serie " + Serie + " \n";
+
+                } else {
+
+                    resultado += "Sorteo #" + nro_st + " - Número Premiado " + nro_premiado + " - Serie " + Serie + " \n";
+
+
+                }
+
+
+                
+
+            } else if (nro_st == pmayor) {
+
+                resultado += " ======PREMIO MAYOR======= \n";
+                resultado += "Sorteo #" + nro_st + " - Número Premiado " + nro_premiado + " - Serie " + Serie + " \n";
+
+
+            }
+
+
+
+
+        }
+
+        return resultado;
+
+
+    }
 
 }
